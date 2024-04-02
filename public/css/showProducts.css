@@ -1,0 +1,70 @@
+.body{
+    background-color: aqua;
+}
+*{
+    /* box-sizing: border-box; */
+    margin: 0;
+    padding: 5px;
+}
+/* *************** navbar ***************/
+a {
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Inherit color from parent */
+}
+.navbar-custom {
+    height: 70px; 
+    padding: 20px;
+}
+
+.navbar-custom .nav-link img {
+    margin-right: 5px;
+}
+.navbar-custom .navbar-brand,
+.navbar-custom .nav-link {
+    font-size: 22px; 
+}
+.navbar .dropdown-menu {
+    margin-top: 5px;
+}
+.user-section{
+    display: flex;
+}
+
+
+
+/* *************** navbar end***************/
+.product-list{
+    height: 100%;
+    width:100%;
+    background-color:aliceblue;
+    display: grid;
+    gap: 5px 5px;
+    grid-template-columns:  auto auto auto auto;
+    /* grid-template-rows: 500px; */
+    /* border: 2px solid green; */
+}
+.card{
+    /* height: 500px;
+    width: 30rem;  */
+    /* background-color: rgb(137, 153, 232); */
+    padding: 1rem;
+    border: 2px solid black;
+    border-radius: 1em;
+    overflow:auto;
+}
+.product img{
+    height: 4rem;
+    width: 4rem;
+}
+/* add product button  */
+.add-prod{
+    display: flex;
+    justify-content: flex-end;
+    /* border: 2px black; */
+}
+.add-prod button{
+    text-decoration:none;
+    font-weight: bold;
+    padding: 1em;
+    background-color: aquamarine;
+}

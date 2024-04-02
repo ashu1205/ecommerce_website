@@ -1,0 +1,12 @@
+*{
+    margin:8px;
+    padding: 8px;
+}
+h1{
+    color:darkgreen;
+}
+form{
+     height: 80%;
+     width: 50%;
+     border: 2px solid green;
+}
