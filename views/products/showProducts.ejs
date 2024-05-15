@@ -1,0 +1,37 @@
+
+<% layout('layout/boilerplate') -%>
+
+  
+<div class="top-prod-container">
+       
+<div class="prod-top">
+    <h1>Products</h1>
+
+    <% if(user) {%>
+    <% if(user.isSeller){ %>
+        <div class="add-prod">
+            <a href="/createProduct"><button>Add Product</button></a>
+        </div>
+    <%}%>
+    <%}%>
+</div>
+       
+    <div class="product-list">
+        
+        <%for(let prod of data){%>
+            
+            <a href="/product/<%= prod._id %>" class="card-link" style="text-decoration: none;">
+                <div class="card m-2" style="width: 18rem;">
+                    <img src="<%= prod.productImageUrl %>" alt="product_image" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title"><i><%= prod.productName %></i></h5>
+                        <h4>₹<%= prod.productPrice %></h4>
+                        <p class="card-text"> <b>Description :</b> <%= prod.productDescription %></p>
+                        <button class="btn btn-primary">Show</button>
+                    </div>
+                </div>
+            </a>
+            
+        <% }%>
+    </div>  
+</div>

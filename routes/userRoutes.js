@@ -7,18 +7,28 @@ const {signup,signin}=require('../controllers/userController')
 const auth=require('../middleware/auth')
 //mapping
 
-router.get('/signin',(req,res)=>{
-    res.render('login');
+router.get('/signin',auth,(req,res)=>{
+    if(res.locals.user){
+        return res.json({
+            message:"already logged in"
+        })
+    }
+    res.render('products/login',{user:res.locals.user});
 })
-router.get('/signup',(req,res)=>{
-    res.render('signup');
+router.get('/signup',auth,(req,res)=>{
+    if(res.locals.user){
+        return res.json({
+            message:"already logged in"
+        })
+    }
+    res.render('products/signup',{user:res.locals.user});
+
 })
 router.post('/signin',signin)
 router.post('/signup',signup)
 router.get('/logout', (req, res) => {
     res.clearCookie('token').redirect('/home');
 });
-
 
 
 module.exports=router

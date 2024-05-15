@@ -23,7 +23,12 @@ async function auth(req,res,next){
             }
             else{
                 res.locals.user=payload
-
+                if(res.locals.user.role==='seller'){
+                    res.locals.user.isSeller=true
+                }
+                else{
+                    res.locals.user.isSeller=false
+                }
                 next()
             }
         }

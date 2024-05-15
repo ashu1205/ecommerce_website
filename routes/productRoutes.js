@@ -1,12 +1,13 @@
-const express=require('express')
-const router=express.Router();
+const express = require('express')
+const router = express.Router();
 
 //import controllers
-const {createProduct,showProducts,deleteProduct,redirectToUpdate,updateProduct}=require('../controllers/productController')
-//middleware
-const auth=require('../middleware/auth')
-//mapping
-router.get('/home',auth,showProducts)
+const { createProduct, showProducts, deleteProduct, redirectToUpdate, updateProduct,
+    getSingleProduct, addReview, deleteReview ,addToCart} 
+    = require('../controllers/productController')
+
+const auth = require('../middleware/auth')
+const isSeller = require('../middleware/isSeller')
 // router.get('/buynow',auth,(req,res,next)=>{
 //     if(res.locals.user){
 //         next()
@@ -17,14 +18,27 @@ router.get('/home',auth,showProducts)
 // } , buynow)
 
 // ************ admin routes ***********
-router.get('/createProduct',(req,res)=>{
-    res.render("createProduct.ejs")
+router.get('/createProduct', auth, isSeller, (req, res) => {
+    res.render("products/createProduct.ejs")
 })
-router.post('/createProduct',createProduct)
-router.delete('/deleteProduct/:id',deleteProduct)
-router.get('/updateProduct/:id',redirectToUpdate)
-router.patch('/updateProduct/:id',updateProduct)
+router.post('/createProduct', auth, isSeller, createProduct)
+router.delete('/deleteProduct/:id', auth, isSeller, deleteProduct)
+router.get('/updateProduct/:id', auth, isSeller, redirectToUpdate)
+router.patch('/updateProduct/:id', auth, isSeller, updateProduct)
 // ************ admin routes end ***********
 
+////********  product routes */
+router.get('/home', auth, showProducts)
+router.get('/product/:id', auth, getSingleProduct)
 
-module.exports=router
+// ******* product routes end ****//
+
+// *******review routes ****/
+router.post('/review/:id', addReview)
+router.delete('/review/:id/:pid', deleteReview)
+// *******review routes end **/
+
+
+/// **** add To cart ******//
+router.post('/cart/:id',auth,addToCart)
+module.exports = router

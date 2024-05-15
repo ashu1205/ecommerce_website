@@ -1,0 +1,51 @@
+
+<nav class="nav-ch navbar navbar-expand-lg bg-body-tertiary navbar-custom">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/home"><strong>ShopNow</strong></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/home">Home</a>
+                </li>
+                
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/cart">
+                        <i class="bi bi-cart"></i> 
+                        <% if (user && user.cart > 0) { %>
+                            <span class="badge bg-primary"><%= user.cart%></span> 
+                        <% } %>
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link " href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <div class="user-section">
+                            <div class="">
+                                <img src="https://th.bing.com/th/id/OIP.1yoSL-WO0YU5mQKROudvswHaHa?w=210&h=210&c=7&r=0&o=5&dpr=1.4&pid=1.7" alt="User Image" class="rounded-circle" width="50" height="50"> 
+                            </div>
+                            <div >
+                                <% if (user) {%>
+                                    <p class="dropdown-toggle"  ><%= user.name %></p>
+                                    <ul class="dropdown-menu  dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+                                        <li><a class="dropdown-item" href="#">My Profile</a></li>
+                                        <li><a class="dropdown-item" href="#">My Orders</a></li>
+                                        <li><a href="/logout" class="dropdown-item"><button class="btn btn-danger">Log out</button></a></li>
+                                    </ul>
+                                <% } else { %>
+                                    <a href="/signin"><button class="btn btn-primary">Log in</button></a>
+                                <% } %>
+                            </div>
+                            
+                        </div>
+                    </a>
+                   
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</nav>

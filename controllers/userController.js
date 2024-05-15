@@ -64,7 +64,8 @@ async function signin(req,res){
         const payload={
             name:user.username,
             userId:user._id,
-            isAdmin:user.isAdmin
+            role:user.role,
+            cart:user.cart.length
         }
         
         // compare password
@@ -82,7 +83,8 @@ async function signin(req,res){
                 httpOnly:true,
                 
             }
-            
+            console.log(token);
+            console.log(user.username+ " logged in");
             return res.cookie("token",token,options).status(200).redirect('/home')
         }
         else{
